@@ -37,7 +37,11 @@ app.get("/health", (req, res) => {
 const startServer = async () => {
   try {
     await connectDB();
-    app.listen(ENV.PORT, () => console.log("Server is running on port:", ENV.PORT));
+    const PORT = process.env.PORT || ENV.PORT || 3000;
+
+app.listen(PORT, () => {
+  console.log("Server is running on port:", PORT);
+});
   } catch (error) {
     console.error("💥 Error starting the server", error);
   }
